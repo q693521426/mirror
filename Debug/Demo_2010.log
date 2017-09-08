@@ -1,0 +1,42 @@
+﻿生成启动时间为 2017/9/8 16:26:44。
+     1>项目“C:\Users\zhengyiming\Documents\Visual Studio 2012\Projects\Demo\Demo_2010.vcxproj”在节点 2 上(Rebuild 个目标)。
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IDXUT\Core /IDXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yc"DXUT.h" /Fp"Debug\Demo.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt  DXUT\Core\DXUT.cpp
+         DXUT.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /IDXUT\Core /IDXUT\Optional /ZI /nologo /W4 /WX- /Od /Oi /Oy- /D WIN32 /D _DEBUG /D DEBUG /D PROFILE /D _WINDOWS /D D3DXFX_LARGEADDRESS_HANDLE /D _UNICODE /D UNICODE /Gm- /EHsc /RTC1 /MDd /GS /arch:SSE2 /fp:fast /Zc:wchar_t /Zc:forScope /openmp- /Yu"DXUT.h" /Fp"Debug\Demo.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt  RenderStates.cpp DXUT\Core\DXUTDevice11.cpp DXUT\Core\DXUTDevice9.cpp DXUT\Core\DXUTmisc.cpp DXUT\Optional\DXUTcamera.cpp DXUT\Optional\DXUTgui.cpp DXUT\Optional\DXUTres.cpp DXUT\Optional\DXUTsettingsdlg.cpp DXUT\Optional\SDKmesh.cpp DXUT\Optional\SDKmisc.cpp Demo.cpp
+         RenderStates.cpp
+         DXUTDevice11.cpp
+         DXUTDevice9.cpp
+         DXUTmisc.cpp
+         DXUTcamera.cpp
+         DXUTgui.cpp
+         DXUTres.cpp
+         DXUTsettingsdlg.cpp
+         SDKmesh.cpp
+         SDKmisc.cpp
+         Demo.cpp
+         正在生成代码...
+     1>c:\users\zhengyiming\documents\visual studio 2012\projects\demo\demo.cpp(91): warning C4715: “OnD3D11CreateDevice”: 不是所有的控件路径都返回值
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.0\bin\x86\rc.exe /D _UNICODE /D UNICODE /l"0x0409" /nologo /fo"Debug\Demo.res" Demo.rc 
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\zhengyiming\Documents\Visual Studio 2012\Projects\Demo\Debug\Demo.exe" /INCREMENTAL /NOLOGO Effects11.lib Effects11d.lib d3dcompiler.lib d3dx11d.lib d3dx9d.lib dxerr.lib dxguid.lib winmm.lib comctl32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /manifestinput:"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\Include\Manifest\dpiaware.manifest" /DEBUG /PDB:"C:\Users\zhengyiming\Documents\Visual Studio 2012\Projects\Demo\Debug\Demo.pdb" /SUBSYSTEM:WINDOWS /LARGEADDRESSAWARE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\zhengyiming\Documents\Visual Studio 2012\Projects\Demo\Debug\Demo.lib" /MACHINE:X86 /SAFESEH  Debug\Demo.res
+         Debug\RenderStates.obj
+         Debug\DXUT.obj
+         Debug\DXUTDevice11.obj
+         Debug\DXUTDevice9.obj
+         Debug\DXUTmisc.obj
+         Debug\DXUTcamera.obj
+         Debug\DXUTgui.obj
+         Debug\DXUTres.obj
+         Debug\DXUTsettingsdlg.obj
+         Debug\SDKmesh.obj
+         Debug\SDKmisc.obj
+         Debug\Demo.obj
+     1>RenderStates.obj : warning LNK4075: 忽略“/EDITANDCONTINUE”(由于“/SAFESEH”规范)
+         Demo_2010.vcxproj -> C:\Users\zhengyiming\Documents\Visual Studio 2012\Projects\Demo\Debug\Demo.exe
+     1>已完成生成项目“C:\Users\zhengyiming\Documents\Visual Studio 2012\Projects\Demo\Demo_2010.vcxproj”(Rebuild 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.40
