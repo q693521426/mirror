@@ -4,8 +4,61 @@
 #include <d3dcompiler.h>
 #include <d3dx9math.h>
 #include <malloc.h>
+#include <minwinbase.h>
+#include <minwinbase.h>
 
 #define D3D_COMPILE_STANDARD_FILE_INCLUDE ((ID3DInclude*)(UINT_PTR)1)
+
+enum RenderOptions
+{
+	Lighting = 0,
+	Textures = 1,
+	TexturesAndFog = 2
+};
+
+struct DirectionalLight
+{
+	DirectionalLight(){ ZeroMemory(this,sizeof(*this)); }
+	
+	D3DXVECTOR4 Ambient;
+	D3DXVECTOR4 Diffuse;
+	D3DXVECTOR4 Specular;
+	D3DXVECTOR3 Direction;
+	float Pad;
+};
+
+struct PointLight
+{
+	PointLight() { ZeroMemory(this,sizeof(*this)); }
+
+	D3DXVECTOR4 Ambient;
+	D3DXVECTOR4 Diffuse;
+	D3DXVECTOR4 Specular;
+
+	D3DXVECTOR3 Position;
+	float Range;
+
+	D3DXVECTOR3 Att;
+	float Pad;
+};
+
+struct SpotLight
+{
+	SpotLight() { ZeroMemory(this,sizeof(*this)); }
+
+	D3DXVECTOR4 Ambient;
+	D3DXVECTOR4 Diffuse;
+	D3DXVECTOR4 Specular;
+
+	D3DXVECTOR3 Position;
+	float Range;
+
+	D3DXVECTOR3 Direction;
+	float Spot;
+
+	D3DXVECTOR3 Att;
+	float Pad;
+};
 
 struct Material
 {
@@ -34,7 +87,7 @@ namespace Vertex
 }
 HRESULT CompileShader( _In_ LPCWSTR srcFile, _In_ LPCSTR entryPoint, _In_ LPCSTR profile, _Outptr_ ID3DBlob** blob )
 {
-    if ( !srcFile || !entryPoint || !profile || !blob )
+    if ( !srcFile ||  !profile || !blob )
        return E_INVALIDARG;
 
     *blob = nullptr;
@@ -73,4 +126,12 @@ HRESULT CompileShader( _In_ LPCWSTR srcFile, _In_ LPCSTR entryPoint, _In_ LPCSTR
     *blob = shaderBlob;
 
     return hr;
+}
+
+D3DXMATRIX InverseTranspose(D3DXMATRIX* m)
+{
+	D3DXMATRIX out;
+	float det = D3DXMatrixDeterminant(m);
+	D3DXMatrixInverse(&out,&det,m);
+	return out;
 }
