@@ -76,7 +76,10 @@
     <ClCompile Include="DXUT\Optional\SDKmisc.cpp">
       <Filter>DXUT</Filter>
     </ClCompile>
-    <None Include="BasicHLSLFX11.fx">
+    <None Include="Model.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="LightHelper.fx">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

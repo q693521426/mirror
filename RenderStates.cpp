@@ -101,10 +101,10 @@ HRESULT RenderStates::Initialize(ID3D11Device* device)
 	mirrorDesc.FrontFace.StencilPassOp		= D3D11_STENCIL_OP_REPLACE;
 	mirrorDesc.FrontFace.StencilFunc		= D3D11_COMPARISON_ALWAYS;	
 
-	//mirrorDesc.BackFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
-	//mirrorDesc.BackFace.StencilDepthFailOp	= D3D11_STENCIL_OP_KEEP;
-	//mirrorDesc.BackFace.StencilPassOp		= D3D11_STENCIL_OP_REPLACE;
-	//mirrorDesc.BackFace.StencilFunc			= D3D11_COMPARISON_ALWAYS;
+	mirrorDesc.BackFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+	mirrorDesc.BackFace.StencilDepthFailOp	= D3D11_STENCIL_OP_KEEP;
+	mirrorDesc.BackFace.StencilPassOp		= D3D11_STENCIL_OP_REPLACE;
+	mirrorDesc.BackFace.StencilFunc			= D3D11_COMPARISON_ALWAYS;
 
 	V_RETURN(device->CreateDepthStencilState(&mirrorDesc,&MarkMirrorDSS));
 
@@ -121,12 +121,33 @@ HRESULT RenderStates::Initialize(ID3D11Device* device)
 	drawReflectionDesc.FrontFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
 	drawReflectionDesc.FrontFace.StencilFunc		= D3D11_COMPARISON_EQUAL;	
 
-	//drawReflectionDesc.BackFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
-	//drawReflectionDesc.BackFace.StencilDepthFailOp	= D3D11_STENCIL_OP_KEEP;
-	//drawReflectionDesc.BackFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
-	//drawReflectionDesc.BackFace.StencilFunc			= D3D11_COMPARISON_EQUAL;
+	drawReflectionDesc.BackFace.StencilFailOp		= D3D11_STENCIL_OP_KEEP;
+	drawReflectionDesc.BackFace.StencilDepthFailOp	= D3D11_STENCIL_OP_KEEP;
+	drawReflectionDesc.BackFace.StencilPassOp		= D3D11_STENCIL_OP_KEEP;
+	drawReflectionDesc.BackFace.StencilFunc			= D3D11_COMPARISON_EQUAL;
 
-	V_RETURN(device->CreateDepthStencilState(&mirrorDesc,&MarkMirrorDSS));
+	V_RETURN(device->CreateDepthStencilState(&drawReflectionDesc,&DrawReflectionDSS));
+
+	D3D11_DEPTH_STENCIL_DESC noDoubleBlendDesc;
+	noDoubleBlendDesc.DepthEnable      = true;
+	noDoubleBlendDesc.DepthWriteMask   = D3D11_DEPTH_WRITE_MASK_ALL;
+	noDoubleBlendDesc.DepthFunc        = D3D11_COMPARISON_LESS; 
+	noDoubleBlendDesc.StencilEnable    = true;
+    noDoubleBlendDesc.StencilReadMask  = 0xff;
+    noDoubleBlendDesc.StencilWriteMask = 0xff;
+
+	noDoubleBlendDesc.FrontFace.StencilFailOp      = D3D11_STENCIL_OP_KEEP;
+	noDoubleBlendDesc.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	noDoubleBlendDesc.FrontFace.StencilPassOp = D3D11_STENCIL_OP_INCR;//Increment the stencil value by 1, and wrap the result if necessary.
+	noDoubleBlendDesc.FrontFace.StencilFunc   = D3D11_COMPARISON_EQUAL;
+
+	// We are not rendering backfacing polygons, so these settings do not matter.
+	noDoubleBlendDesc.BackFace.StencilFailOp      = D3D11_STENCIL_OP_KEEP;
+	noDoubleBlendDesc.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_KEEP;
+	noDoubleBlendDesc.BackFace.StencilPassOp = D3D11_STENCIL_OP_INCR;
+	noDoubleBlendDesc.BackFace.StencilFunc   = D3D11_COMPARISON_EQUAL;
+
+	V_RETURN(device->CreateDepthStencilState(&noDoubleBlendDesc,&NoDoubleBlendDSS));
 
 	return S_OK;
 }
